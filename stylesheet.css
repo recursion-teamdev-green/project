@@ -1,1 +1,23 @@
+.bg-lightblue{
+    background-color: rgb(122, 206, 239);
+}
 
+.userPic{
+    border-radius: 50%;
+    height: 50px;
+    width: auto;
+    margin: 0.5rem;
+}
+
+.no-scroll{
+    overflow: hidden;
+}
+
+#app-description{
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+#team-member{
+    cursor: pointer;
+}
