@@ -1,3 +1,59 @@
+class Person{
+    constructor(name, img, rarity, position, info, comment, twUrl, rePfUrl) {
+        this.name = name;
+        this.img = img;
+        this.rarity = rarity;
+        this.position = position;
+        this.info = info;
+        this.comment = comment;
+        this.twUrl =twUrl;
+        this.rePfUrl = rePfUrl;
+        this.didFind = false;
+    }
+
+
+    static getNList(personList) {
+        for(let i = 0; i < personList.length; i++) {
+            let nList = [];
+            if(personList[i].rarity == "N") nList.push(personList[i]);
+        }
+        return nList;
+    }
+
+    static getRList(personList) {
+        for(let i = 0; i < personList.length; i++) {
+            let rList = [];
+            if(personList[i].rarity == "R") rList.push(personList[i]);
+        }
+        return rList;
+    }
+
+    static getSRList(personList) {
+        for(let i = 0; i < personList.length; i++) {
+            let SRList = [];
+            if(personList[i].rarity == "SR") SRList.push(personList[i]);
+        }
+        return SRList;
+    }
+
+    static getURList(personList) {
+        for(let i = 0; i < personList.length; i++) {
+            let urList = [];
+            if(personList[i].rarity == "UR") urList.push(personList[i]);
+        }
+        return urList;
+    }
+}
+
+class User{
+    constructor() {
+        this.numOfDraws = 0;
+        this.drawnList = [];
+    }
+}
+
+
+
 const config = {
     homePage : document.getElementById("homePage"),
     gachaBtn : document.getElementById("gachaBtn"),
