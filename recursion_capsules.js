@@ -1,3 +1,35 @@
+class Person{
+    constructor(name, img, rarity, position, info, comment, twUrl, rePfUrl) {
+        this.name = name;
+        this.img = img;
+        this.rarity = rarity;
+        this.position = position;
+        this.info = info;
+        this.comment = comment;
+        this.twUrl =twUrl;
+        this.rePfUrl = rePfUrl;
+        this.didFind = false;
+    }
+
+
+    static getListByRarity(personList, rarity) {
+        let res = [];
+        for(let i = 0; i < personList.length; i++) {
+            if(personList[i].rarity == rarity) res.push(personList[i]);
+        }
+        return res;
+    }
+}
+
+class User{
+    constructor() {
+        this.numOfDraws = 0;
+        this.drawnList = [];
+    }
+}
+
+
+
 const config = {
     homePage : document.getElementById("homePage"),
     gachaBtn : document.getElementById("gachaBtn"),
