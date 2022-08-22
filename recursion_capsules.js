@@ -47,7 +47,7 @@ const config = {
 }
 
 config.gachaBtn.addEventListener("click", function(){
-    View.getResult(HelperFunctions.getUserFromGacha());
+    View.getResult(HelperFunctions.getPersonFromGacha());
 })
 
 config.homeBtn.addEventListener("click", function(){
@@ -55,16 +55,14 @@ config.homeBtn.addEventListener("click", function(){
 })
 
 class HelperFunctions{
-    static getUserFromGacha(){
-        // let random = Math.floor(Math.random() * 100);
-        // let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
-        // let user = HelperFunctions.getRandomUser(rank);
-        let random = Math.floor(Math.random() * personList.length);
-        let person = personList[random];
+    static getPersonFromGacha(){
+        let random = Math.floor(Math.random() * 100);
+        let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
+        let person = HelperFunctions.getRandomPersonByRank(rank);
         return person;
     }
 
-    static getRandomUser(rank){
+    static getRandomPersonByRank(rank){
         if(rank == "UR"){
             let random = Math.floor(Math.random() * urList.length);
             return urList[random];
@@ -143,7 +141,7 @@ class View{
         `;
         document.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
-            View.getResult(HelperFunctions.getUserFromGacha());
+            View.getResult(HelperFunctions.getPersonFromGacha());
 
         })
         View.gachaAnimation("on");
@@ -181,7 +179,7 @@ let takeshi = new Person(
 let shinya = new Person(
     "Shinya",
     "https://recursionist.io/img/front/business/recursion-bear.png",
-    "UR",
+    "SR",
     "福岡県出身",
     "Recursion 共同創業者",
     "「共同創業者のShinyaです！」",
@@ -189,19 +187,43 @@ let shinya = new Person(
     "https://recursionist.io/users/shinya"
 );
 
-let kai = new Person(
-    "Kai",
-    "https://recursionist.io/img/front/business/recursion-bear.png",
-    "N",
+// 仮のPersonなのであとで削除
+let rare = new Person(
+    "RarePerson",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/LetterR.svg/800px-LetterR.svg.png",
+    "R",
     "福岡県出身",
-    "Recursion 共同創業者",
-    "「共同創業者のShinyaです！」",
-    "https://twitter.com/shinya_cal",
+    "メンターの代表格",
+    "メンターするのでチーム開発カモン！",
+    "https://twitter.com/recursioncs",
+    "https://recursionist.io/users/shinya"
+)
+
+let rare2 = new Person(
+    "RarePerson2",
+    "https://www.thoughtco.com/thmb/jtUUbpSwsJTs7Kr4HEdvTagqxZ4=/1732x1272/filters:fill(auto,1)/GettyImages-1036106366-5c58ee26c9e77c00016b4152.jpg",
+    "R",
+    "福岡県出身",
+    "Recursion最古参",
+    "Recursionのことはすべて知ってるよ",
+    "https://twitter.com/recursioncs",
+    "https://recursionist.io/users/shinya"
+)
+
+let jeffryUR = new Person(
+    "魔改造Jeffry",
+    "https://user-images.githubusercontent.com/51078652/185964168-41ded5e3-6c28-4364-a5d9-0a4e8f12faf8.jpg",
+    "UR",
+    "Jeffry進化版",
+    "レア中のレア",
+    "誰も俺を止められない",
+    "https://twitter.com/jalva_dev",
     "https://recursionist.io/users/shinya"
 )
 
 let personList = [];
-personList.push(takeshi, shinya, kai);
+personList.push(takeshi, shinya);
+personList.push(rare, rare2, jeffryUR);
 
 function getListByRarity(personList, rarity) {
     let res = [];
@@ -221,8 +243,8 @@ document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/
 
 //ダミーユーザー
 
-/*
 
+/*
 dummyUser = new User();
 dummyUser.numOfDraws = 0;
 
@@ -232,5 +254,4 @@ if(dummyUser.numOfDraws == 0){
     document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャで「${document.getElementById("person-name").innerHTML}」さんを${dummyUser.numOfDraws}回目で引けました！">Tweet</a>`
 }
 twttr.widgets.load();
-
 */
