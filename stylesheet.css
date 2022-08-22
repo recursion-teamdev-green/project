@@ -13,14 +13,15 @@
     overflow: hidden;
 }
 
+
 #app-description{
-    cursor: pointer;
     margin-left: 100px;
 }
 
-#team-member{
+#app-description, #team-member, #userList{
     cursor: pointer;
 }
+
 
 /* ここからresultPage用のCSS */
 h6 {
