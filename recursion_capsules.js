@@ -115,4 +115,13 @@ class View{
     }
 }
 
+//ダミーユーザー
+
+
+DummyUser = new User();
+DummyUser.numOfDraws = 1;
+
+document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャで「${document.getElementById("person-name").innerHTML}」さんを${DummyUser.numOfDraws}回目で引けました！">Tweet</a>`
+twttr.widgets.load();
+
 // View.getinitialPictures();
