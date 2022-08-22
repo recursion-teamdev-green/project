@@ -21,3 +21,51 @@
 #team-member{
     cursor: pointer;
 }
+
+/* ここからresultPage用のCSS */
+h6 {
+    color: gray;
+}
+
+hr {
+    color: rgb(122, 206, 239) !important;
+}
+
+.maxH-30Vh {
+    max-height: 30vh;
+}
+
+.imgFit {
+    object-fit: contain;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.urEffect {
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s urEffect linear infinite;
+}
+@keyframes urEffect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.urBg {
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    animation: 4s urBg linear infinite;
+}
+@keyframes urBg {
+    100% {
+        background-position: 200%;
+    }
+}
