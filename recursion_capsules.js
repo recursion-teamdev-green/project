@@ -12,36 +12,12 @@ class Person{
     }
 
 
-    static getNList(personList) {
+    static getListByRarity(personList, rarity) {
+        let res = [];
         for(let i = 0; i < personList.length; i++) {
-            let nList = [];
-            if(personList[i].rarity == "N") nList.push(personList[i]);
+            if(personList[i].rarity == rarity) res.push(personList[i]);
         }
-        return nList;
-    }
-
-    static getRList(personList) {
-        for(let i = 0; i < personList.length; i++) {
-            let rList = [];
-            if(personList[i].rarity == "R") rList.push(personList[i]);
-        }
-        return rList;
-    }
-
-    static getSRList(personList) {
-        for(let i = 0; i < personList.length; i++) {
-            let SRList = [];
-            if(personList[i].rarity == "SR") SRList.push(personList[i]);
-        }
-        return SRList;
-    }
-
-    static getURList(personList) {
-        for(let i = 0; i < personList.length; i++) {
-            let urList = [];
-            if(personList[i].rarity == "UR") urList.push(personList[i]);
-        }
-        return urList;
+        return res;
     }
 }
 
