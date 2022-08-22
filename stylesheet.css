@@ -21,3 +21,194 @@
 #team-member{
     cursor: pointer;
 }
+
+/* ここからresultPage用のCSS */
+h6 {
+    color: gray;
+}
+
+hr {
+    color: rgb(122, 206, 239) !important;
+}
+
+.maxH-30Vh {
+    max-height: 30vh;
+}
+
+.imgFit {
+    object-fit: contain;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.metalEffect {
+    background: linear-gradient(to right,
+            #212121 0%,
+            #424242 10%,
+            #FAFAFA 15%,
+            #424242 20%,
+            #212121 80% 100%) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s metalEffect linear infinite;
+}
+@keyframes metalEffect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.metalBg {
+    background: linear-gradient(to right,
+            #212121 0%,
+            #424242 10%,
+            #FAFAFA 15%,
+            #424242 20%,
+            #212121 80% 100%) 0 / 200%;
+    animation: 4s metalBg linear infinite;
+}
+@keyframes metalBg {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.urEffect {
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s urEffect linear infinite;
+}
+@keyframes urEffect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.urBg {
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    animation: 4s urBg linear infinite;
+}
+@keyframes urBg {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.rEffect {
+    background: linear-gradient(to right,
+        #B67B03 0%,
+        #DAAF08 45%,
+        #FEE9A0 70%,
+        #DAAF08 85%,
+        #B67B03 90% 100%,
+        #DAAF08 85%,
+        #FEE9A0 70%,
+        #DAAF08 45%
+        ) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s rEffect linear infinite;
+}
+@keyframes rEffect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.rBg {
+    background: linear-gradient(to right,
+        #B67B03 0%,
+        #DAAF08 45%,
+        #FEE9A0 70%,
+        #DAAF08 85%,
+        #B67B03 90% 100%,
+        #DAAF08 85%,
+        #FEE9A0 70%,
+        #DAAF08 45%) 0 / 200%;
+    animation: 4s rBg linear infinite;
+}
+@keyframes rBg {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.nEffect {
+    background: linear-gradient(to right,
+        #0277BD 0%,
+        #4FC3F7 30%,
+        #E1F5FE 50%,
+        #4FC3F7 70%,
+        #0277BD 90% 100%) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s nEffect linear infinite;
+}
+@keyframes nEffect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.nBg {
+    background: linear-gradient(45deg,
+        #0277BD 0%,
+        #4FC3F7 30%,
+        #E1F5FE 50%,
+        #4FC3F7 70%,
+        #0277BD 90% 100%) 0 / 200%;
+}
+
+.n2Effect {
+    background: linear-gradient(to right,
+        #757575 0%,
+        #9E9E9E 30%,
+        #E8E8E8 50%,
+        #9E9E9E 70%,
+        #757575 90% 100%) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s n2Effect linear infinite;
+}
+@keyframes n2Effect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.n2Bg {
+    background: linear-gradient(45deg,
+        #757575 0%,
+        #9E9E9E 45%,
+        #E8E8E8 70%,
+        #9E9E9E 85%,
+        #757575 90% 100%) 0 / 200%;
+}
