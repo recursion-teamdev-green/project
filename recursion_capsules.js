@@ -1,9 +1,10 @@
 class Person{
-    constructor(name, img, rarity, position, info, comment, twUrl, rePfUrl) {
+    constructor(name, img, rarity, position, title, info, comment, twUrl, rePfUrl) {
         this.name = name;
         this.img = img;
         this.rarity = rarity;
         this.position = position;
+        this.title = title;
         this.info = info;
         this.comment = comment;
         this.twUrl =twUrl;
@@ -17,7 +18,7 @@ class User{
         this.numOfDraws = 0;
         this.drawnList = [];
     }
-    
+
 
     addResult(person){
         this.numOfDraws += 1;
