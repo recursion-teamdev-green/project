@@ -13,27 +13,12 @@ class Person{
 }
 
 class User{
-    constructor() {
+    constructor(name) {
+        this.name = name;
         this.numOfDraws = 0;
         this.drawnList = [];
     }
     
-
-    addResult(person){
-        this.numOfDraws += 1;
-        if(!this.drawnList.includes(person)){
-            this.drawnList.push(person);
-            config.userPicDiv.innerHTML += `
-                <img src=${person.img} class="userPic">
-            `
-        }
-        document.getElementById("numOfGacha").innerHTML = `ガチャを回した数: ${this.numOfDraws}回`;
-        document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: ${this.drawnList.length}/${personList.length}`;
-        if(this.drawnList.length == personList.length){
-            console.log("complete");
-            // トップページのデザインを変更
-        }
-    }
 }
 
 
@@ -43,8 +28,29 @@ const config = {
     resultPage : document.getElementById("resultPage"),
     gachaBtn : document.getElementById("gachaBtn"),
     userPicDiv : document.getElementById("userPictures"),
-    homeBtn : document.getElementById("homeBtn")
+    homeBtn : document.getElementById("homeBtn"),
+    loginPage : document.getElementById("loginPage")
 }
+
+document.querySelectorAll(".name-input")[0].addEventListener("keydown", function(e){
+    if(e.key == "Enter"){
+        let userName = document.querySelectorAll(".name-input")[0].value;
+        if(userName == ""){
+            alert("put your name");
+        }
+        else{
+            startNewGame(userName);
+        }
+    }
+})
+
+document.getElementById("resetBtn").addEventListener("click", function(){
+    if(confirm("データをリセットしますか？")){
+        localStorage.removeItem(currentUser.name);
+        View.switchDisplay(config.homePage, config.loginPage);
+        View.resetHtml();
+    }
+})
 
 config.gachaBtn.addEventListener("click", function(){
     View.getResult(HelperFunctions.getPersonFromGacha());
@@ -53,6 +59,21 @@ config.gachaBtn.addEventListener("click", function(){
 config.homeBtn.addEventListener("click", function(){
     View.switchDisplay(config.resultPage, config.homePage);
 })
+
+let currentUser = new User("");
+function startNewGame(userName){
+    document.getElementById("user-name").innerHTML = userName;
+    if(localStorage.getItem(userName) == null){
+        console.log("no data");
+        currentUser = new User(userName);
+    }
+    else{
+        currentUser = JSON.parse(localStorage.getItem(userName));
+        View.updateHtml(currentUser);
+        View.displayPersonList(currentUser);
+    }
+    View.switchDisplay(config.loginPage, config.homePage);
+}
 
 class HelperFunctions{
     static getPersonFromGacha(){
@@ -78,6 +99,26 @@ class HelperFunctions{
         else{
             let random = Math.floor(Math.random() * nList.length);
             return nList[random];
+        }
+    }
+
+    static updateUser(person){
+        HelperFunctions.addPerson(currentUser, person);
+        localStorage.setItem(currentUser.name, JSON.stringify(currentUser));
+    }
+
+    static addPerson(user, person){
+        user.numOfDraws += 1;
+        if(!user.drawnList.includes(person)){
+            user.drawnList.push(person);
+            config.userPicDiv.innerHTML += `
+                <img src=${person.img} class="userPic">
+            `
+        }
+        View.updateHtml(user);
+        if(user.drawnList.length == personList.length){
+            console.log("complete");
+            // トップページのデザインを変更
         }
     }
 }
@@ -150,7 +191,7 @@ class View{
             View.switchDisplay(config.homePage, config.resultPage);
             config.gachaBtn.disabled = false;
             this.gachaAnimation("off");
-            currentUser.addResult(person);
+            HelperFunctions.updateUser(person);
         }, 2000);
     }
 
@@ -161,6 +202,25 @@ class View{
         else{
             document.getElementById("gachaMachine").classList.remove("animation");
         }
+    }
+
+    static updateHtml(user){
+        document.getElementById("numOfGacha").innerHTML = `ガチャを回した数: ${user.numOfDraws}回`;
+        document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: ${user.drawnList.length}/${personList.length}`;
+    }
+
+    static displayPersonList(user){
+        for(let i = 0; i < user.drawnList.length; i++){
+            config.userPicDiv.innerHTML += `
+                <img src=${user.drawnList[i].img} class="userPic">
+            `;
+        }
+    }
+
+    static resetHtml(){
+        config.userPicDiv.innerHTML = "";
+        document.getElementById("numOfGacha").innerHTML = `ガチャを回した数: 0回`;
+        document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
     }
 }
 
@@ -238,7 +298,6 @@ let rList = getListByRarity(personList, "R");
 let srList = getListByRarity(personList, "SR");
 let urList = getListByRarity(personList, "UR");
 
-let currentUser = new User();
 document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
 
 //ダミーユーザー
