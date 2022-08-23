@@ -63,45 +63,13 @@ hr {
     padding-bottom: 50px;
 }
 
-.metalEffect {
-    background: linear-gradient(to right,
-            #212121 0%,
-            #424242 10%,
-            #FAFAFA 15%,
-            #424242 20%,
-            #212121 80% 100%) 0 / 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    font-size: 440%;
-    font-weight: bold;
-    display: inline-block;
-    animation: 4s metalEffect linear infinite;
-}
-@keyframes metalEffect {
-    100% {
-        background-position: 200%;
-    }
-}
-
-.metalBg {
-    background: linear-gradient(to right,
-            #212121 0%,
-            #424242 10%,
-            #FAFAFA 15%,
-            #424242 20%,
-            #212121 80% 100%) 0 / 200%;
-    animation: 4s metalBg linear infinite;
-}
-@keyframes metalBg {
-    100% {
-        background-position: 200%;
-    }
-}
-
 .urEffect {
-    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    background: linear-gradient(to right,
+            #212121 0%,
+            #424242 10%,
+            #FAFAFA 15%,
+            #424242 20%,
+            #212121 80% 100%) 0 / 200%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -118,10 +86,42 @@ hr {
 }
 
 .urBg {
-    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    background: linear-gradient(to right,
+            #212121 0%,
+            #424242 10%,
+            #FAFAFA 15%,
+            #424242 20%,
+            #212121 80% 100%) 0 / 200%;
     animation: 4s urBg linear infinite;
 }
 @keyframes urBg {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.srEffect {
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 440%;
+    font-weight: bold;
+    display: inline-block;
+    animation: 4s srEffect linear infinite;
+}
+@keyframes srEffect {
+    100% {
+        background-position: 200%;
+    }
+}
+
+.srBg {
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #e60000) 0 / 200%;
+    animation: 4s srBg linear infinite;
+}
+@keyframes srBg {
     100% {
         background-position: 200%;
     }
