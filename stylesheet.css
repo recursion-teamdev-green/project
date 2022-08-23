@@ -2,6 +2,15 @@
     background-color: rgb(122, 206, 239);
 }
 
+.loginBox{
+    height: 40%;
+    width: auto;
+}
+
+.name-input{
+    outline: none;
+}
+
 .userPic{
     border-radius: 50%;
     height: 50px;
