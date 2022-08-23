@@ -175,11 +175,12 @@ class View{
                                 <div class="d-flex justify-content-around">
                                     <a href=${person.twUrl}>
                                         TwitterURL
-                                        <!-- <i class="fa-brands fa-twitter"></i> -->
+                                        <i class="fa-brands fa-twitter"></i>
                                         <!-- ↑なぜか反映されなかったのでコメントアウトしてます -->
                                     </a>
                                     <a href=${person.rePfUrl}>
                                         RecursionPFURL
+                                        <img src="https://pbs.twimg.com/profile_images/1351355180395028483/fmvRE5cO_400x400.jpg" height="30px">
                                         <!-- ほんとはRecursionのIconいれたい -->
                                     </a>
                                 </div>
