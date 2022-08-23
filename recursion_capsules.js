@@ -171,7 +171,7 @@ let takeshi = new Person(
     "https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0",
     "N",
     "ただのユーザー",
-    "称号(仮）"
+    "称号(仮）",
     "駆け出しユーザー",
     "とにかくこれからも楽しくRecursionやっていきます！",
     "https://twitter.com/orange_take4",
@@ -248,7 +248,6 @@ let currentUser = new User();
 document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
 
 //ダミーユーザー
-
 
 /*
 dummyUser = new User();
