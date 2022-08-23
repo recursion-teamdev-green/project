@@ -19,23 +19,6 @@ class User{
         this.numOfDraws = 0;
         this.drawnList = [];
     }
-
-
-    addResult(person){
-        this.numOfDraws += 1;
-        if(!this.drawnList.includes(person)){
-            this.drawnList.push(person);
-            config.userPicDiv.innerHTML += `
-                <img src=${person.img} class="userPic">
-            `
-        }
-        document.getElementById("numOfGacha").innerHTML = `ガチャを回した数: ${this.numOfDraws}回`;
-        document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: ${this.drawnList.length}/${personList.length}`;
-        if(this.drawnList.length == personList.length){
-            console.log("complete");
-            // トップページのデザインを変更
-        }
-    }
 }
 
 
@@ -120,20 +103,20 @@ class HelperFunctions{
     }
 
     static updateUser(person){
-        HelperFunctions.addPerson(currentUser, person);
+        HelperFunctions.addPerson(person);
         localStorage.setItem(currentUser.name, JSON.stringify(currentUser));
     }
 
-    static addPerson(user, person){
-        user.numOfDraws += 1;
-        if(!user.drawnList.includes(person)){
-            user.drawnList.push(person);
+    static addPerson(person){
+        currentUser.numOfDraws += 1;
+        if(!currentUser.drawnList.some(object => object.name === person.name)){
+            currentUser.drawnList.push(person);
             config.userPicDiv.innerHTML += `
                 <img src=${person.img} class="userPic">
             `
         }
-        View.updateHtml(user);
-        if(user.drawnList.length == personList.length){
+        View.updateHtml(currentUser);
+        if(currentUser.drawnList.length == personList.length){
             console.log("complete");
             // トップページのデザインを変更
         }
