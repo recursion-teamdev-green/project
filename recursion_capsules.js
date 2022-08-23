@@ -43,9 +43,11 @@ class User{
 const config = {
     homePage : document.getElementById("homePage"),
     resultPage : document.getElementById("resultPage"),
+    listPage: document.getElementById("listPage"),
     gachaBtn : document.getElementById("gachaBtn"),
     userPicDiv : document.getElementById("userPictures"),
     homeBtn : document.getElementById("homeBtn"),
+    listBtn : document.getElementById("listBtn"),
     loginPage : document.getElementById("loginPage")
 }
 
@@ -75,6 +77,11 @@ config.gachaBtn.addEventListener("click", function(){
 
 config.homeBtn.addEventListener("click", function(){
     View.switchDisplay(config.resultPage, config.homePage);
+    View.switchDisplay(config.listPage, config.homePage);
+})
+
+config.listBtn.addEventListener("click", function(){
+    View.switchDisplay(config.homePage, config.listPage);
 })
 
 let currentUser = new User("");
@@ -186,7 +193,9 @@ class View{
                                 <hr>
                                 <div class="d-flex justify-content-center align-items-center offset-2">
                                     <p class="m-0 pe-2">結果をTweetする</p>
-                                    <div class="m-3" id="twitter-button"></div>
+                                    <div class="m-3" id="twitter-button">
+                                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws}回目で引けました！">Tweet</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -197,10 +206,12 @@ class View{
                 </div>
             </div>
         `;
+        //挙動としてツイート内容が事前に埋められているはずが、今は動いていないのでリサーチします。
+        //twttr.widgets.load(config.resultPage);
         document.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
             View.getResult(HelperFunctions.getPersonFromGacha());
-
+            twttr.widgets.load();
         })
         View.gachaAnimation("on");
         config.gachaBtn.disabled = true;
@@ -315,23 +326,28 @@ function getListByRarity(personList, rarity) {
     return res;
 }
 
+function generateGachaList(){
+    for(let i = 0; i < personList.length; i++){
+        document.getElementById("gachaList").innerHTML += `
+            <img src=${personList[i].img} class="userPic">
+        `;
+    }
+}
+
+generateGachaList();
+
+
 let nList = getListByRarity(personList, "N");
 let rList = getListByRarity(personList, "R");
 let srList = getListByRarity(personList, "SR");
 let urList = getListByRarity(personList, "UR");
 
-document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
-
-//ダミーユーザー
-
-/*
-dummyUser = new User();
-dummyUser.numOfDraws = 0;
-
-if(dummyUser.numOfDraws == 0){
-    document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャ,始めます！">Tweet</a>`
-} else {
-    document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャで「${document.getElementById("person-name").innerHTML}」さんを${dummyUser.numOfDraws}回目で引けました！">Tweet</a>`
+document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`; 
+function generateTwttrBtn(){
+    if(currentUser.numOfDraws == 0){
+        document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャ,始めます！">Tweet</a>`
+    } else {
+        document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャで「${document.getElementById("person-name").innerHTML}」さんを${currentUser.numOfDraws}回目で引けました！">Tweet</a>`
+    }
+    twttr.widgets.load();
 }
-twttr.widgets.load();
-*/
