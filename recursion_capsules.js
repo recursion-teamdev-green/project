@@ -77,6 +77,7 @@ config.homeBtn.addEventListener("click", function(){
     View.switchDisplay(config.resultPage, config.homePage);
 })
 
+
 let currentUser = new User("");
 function startNewGame(userName){
     document.getElementById("user-name").innerHTML = userName;
@@ -129,7 +130,9 @@ class HelperFunctions{
         if(!user.drawnList.includes(person)){
             user.drawnList.push(person);
             config.userPicDiv.innerHTML += `
-                <img src=${person.img} class="userPic">
+                <div class="clickable" onclick="View.reviewProfile(${user.drawnList.length - 1})">
+                    <img src=${person.img} class="userPic">
+                </div>
             `
         }
         View.updateHtml(user);
@@ -200,7 +203,6 @@ class View{
         document.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
             View.getResult(HelperFunctions.getPersonFromGacha());
-
         })
         View.gachaAnimation("on");
         config.gachaBtn.disabled = true;
@@ -229,7 +231,9 @@ class View{
     static displayPersonList(user){
         for(let i = 0; i < user.drawnList.length; i++){
             config.userPicDiv.innerHTML += `
-                <img src=${user.drawnList[i].img} class="userPic">
+                <div class="clickable" onclick="View.reviewProfile(${i})">
+                        <img src=${user.drawnList[i].img} class="userPic">
+                </div>
             `;
         }
     }
@@ -239,7 +243,60 @@ class View{
         document.getElementById("numOfGacha").innerHTML = `ガチャを回した数: 0回`;
         document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
     }
+
+    static reviewProfile(personIndex){
+        let person = currentUser.drawnList[personIndex];
+        config.resultPage.innerHTML = `
+            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4">
+                <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
+                    <div>
+                        <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
+                    </div>
+                    <div id="rarityBg" class="card ${person.rarity.toLowerCase()}Bg p-3">
+                        <div class="card bg-white">
+                            <div id="cardImg" class="col-12 d-flex justify-content-center maxH-30Vh">
+                                <img src="${person.img}" alt="" class="img-fluid imgFit ">
+                            </div>
+                            <div class="m-0 px-2 text-center">
+                                <p class="m-0">${person.title}</p>
+                            </div>
+                            <hr>
+                            <div class="card-body bg-white text-center pt-0">
+                                <h5 id="person-name" class="card-title">${person.name}</h5>
+                                <h6 class="card-subtitle">${person.position}</h6>
+                                <hr>
+                                <p class="card-text">${person.info}</p>
+                                <hr>
+                                <p class="card-text">${person.comment}</p>
+                                <hr>
+                                <div class="d-flex justify-content-around">
+                                    <a href=${person.twUrl}>
+                                        TwitterURL
+                                        <!-- <i class="fa-brands fa-twitter"></i> -->
+                                        <!-- ↑なぜか反映されなかったのでコメントアウトしてます -->
+                                    </a>
+                                    <a href=${person.rePfUrl}>
+                                        RecursionPFURL
+                                        <!-- ほんとはRecursionのIconいれたい -->
+                                    </a>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="redrawBtn" class="pt-3">
+                    <button class="btn btn-secondary btn-lg" id="backBtn">戻る</button>
+                </div>
+            </div>
+        `;
+        document.querySelectorAll("#backBtn")[0].addEventListener("click", function(){
+            View.switchDisplay(config.resultPage, config.homePage);
+        })
+        View.switchDisplay(config.homePage, config.resultPage);
+    }
 }
+
 
 
 let takeshi = new Person(

@@ -37,6 +37,10 @@
     animation-iteration-count: infinite;
 }
 
+.clickable{
+    cursor: pointer;
+}
+
 @keyframes shake{
     from{
         transform: translateX(-5px);
