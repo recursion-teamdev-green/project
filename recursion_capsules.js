@@ -18,7 +18,7 @@ class User{
         this.numOfDraws = 0;
         this.drawnList = [];
     }
-    
+
 }
 
 
@@ -149,7 +149,7 @@ class View{
                             <hr>
                             <div class="card-body bg-white text-center pt-0">
                                 <h5 id="person-name" class="card-title">${person.name}</h5>
-                                <h6 class="card-subtitle">${person.position}</h6>
+                                <h6 class="card-subtitle text-secondary">${person.position}</h6>
                                 <hr>
                                 <p class="card-text">${person.info}</p>
                                 <hr>

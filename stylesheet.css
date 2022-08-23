@@ -1,5 +1,12 @@
 .bg-lightblue{
-    background-color: rgb(122, 206, 239);
+  background: -moz-linear-gradient(bottom, #0288D1, #B3E5FC);
+  background: -webkit-linear-gradient(bottom, #0288D1, #B3E5FC);
+  background: linear-gradient(to top, #0288D1, #B3E5FC);
+    /* background-color: rgb(122, 206, 239); */
+}
+
+.cursorP {
+  cursor: pointer;
 }
 
 .loginBox{
@@ -41,27 +48,28 @@
     from{
         transform: translateX(-5px);
     }
-    
+
     50%{
         transform: translateX(10px);
     }
-    
+
     to{
         transform: translateX(-5px);
     }
 }
 
 /* ここからresultPage用のCSS */
-h6 {
-    color: gray;
-}
-
 hr {
     color: rgb(122, 206, 239) !important;
 }
 
+
 .maxH-30Vh {
     max-height: 30vh;
+}
+
+.minH-100vh {
+  min-height: 90vh;
 }
 
 .imgFit {
