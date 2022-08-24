@@ -81,6 +81,7 @@ class HelperFunctions{
         let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
         let person = HelperFunctions.getRandomPersonByRank(rank);
         return person;
+
     }
 
     static getRandomPersonByRank(rank){
@@ -135,8 +136,25 @@ class View{
     }
 
     static getResult(person){
-        config.resultPage.innerHTML = `
-            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4">
+        let parent = config.resultPage;
+        parent.innerHTML = "";
+        if(person.rarity == "UR"){
+            let darkForce = document.createElement("div");
+            let d1 = document.createElement("div");
+            let d2 = document.createElement("div");
+            let d3 = document.createElement("div");
+            darkForce.id="darkForce";
+            d1.id = "d1";
+            d2.id = "d2";
+            d3.id = "d3";
+            d2.append(d3);
+            d1.append(d2);
+            darkForce.append(d1);
+            parent.append(darkForce);
+            parent = darkForce; 
+        }
+        parent.innerHTML += `
+            <div class="d-flex flex-column justify-content-around align-items-center pt-4 pb-4 cardDiv">
                 <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
                     <div>
                         <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
@@ -162,12 +180,10 @@ class View{
                                     <a href=${person.twUrl}>
                                         TwitterURL
                                         <i class="fa-brands fa-twitter"></i>
-                                        <!-- ↑なぜか反映されなかったのでコメントアウトしてます -->
                                     </a>
                                     <a href=${person.rePfUrl}>
                                         RecursionPFURL
                                         <img src="https://pbs.twimg.com/profile_images/1351355180395028483/fmvRE5cO_400x400.jpg" height="30px">
-                                        <!-- ほんとはRecursionのIconいれたい -->
                                     </a>
                                 </div>
                                 <hr>
@@ -187,12 +203,12 @@ class View{
                 </div>
             </div>
         `;
-        document.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
+        parent.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
             View.getResult(HelperFunctions.getPersonFromGacha());
         })
 
-        document.querySelectorAll("#homeBtn")[0].addEventListener("click", function(){
+        parent.querySelectorAll("#homeBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
         })
 
@@ -238,8 +254,25 @@ class View{
 
     static reviewProfile(personIndex){
         let person = currentUser.drawnList[personIndex];
-        config.resultPage.innerHTML = `
-            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4">
+        let parent = config.resultPage;
+        parent.innerHTML = "";
+        if(person.rarity == "UR"){
+            let darkForce = document.createElement("div");
+            let d1 = document.createElement("div");
+            let d2 = document.createElement("div");
+            let d3 = document.createElement("div");
+            darkForce.id="darkForce";
+            d1.id = "d1";
+            d2.id = "d2";
+            d3.id = "d3";
+            d2.append(d3);
+            d1.append(d2);
+            darkForce.append(d1);
+            parent.append(darkForce);
+            parent = darkForce; 
+        }
+        parent.innerHTML += `
+            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4 cardDiv">
                 <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
                     <div>
                         <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
@@ -290,6 +323,9 @@ class View{
 
     static changePersonList(person){
         document.getElementById(person.name).classList.add("text-white");
+        if(person.rarity == "UR"){
+            document.getElementById(person.name).innerHTML = person.name;
+        }
     }
 
     static createPersonList(rankList, list){
@@ -302,7 +338,7 @@ class View{
                 }
                 else{
                     document.getElementById(rankList).innerHTML += `
-                        <p id="${list[i].name}" class="m-0 ps-3 text-white">???</p>
+                        <p id="${list[i].name}" class="m-0 ps-3 text-white">${list[i].name}</p>
                     `
                 }
             }

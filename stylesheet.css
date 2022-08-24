@@ -10,9 +10,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 /******************/
+.cardDiv{
+    z-index: 100;
+    position: relative;
+}
 #darkForce {
     margin: 0;
     min-height: 150vh;
+    z-index: 2;
+    position: relative;
 }
 
 #darkForce {
