@@ -114,7 +114,7 @@ class HelperFunctions{
         if(!currentUser.drawnList.some(object => object.name === person.name)){
             currentUser.drawnList.push(person);
             config.userPicDiv.innerHTML += `
-                <div class="clickable" onclick="View.reviewProfile(${user.drawnList.length - 1})">
+                <div class="clickable" onclick="View.reviewProfile(${currentUser.drawnList.length - 1})">
                     <img src=${person.img} class="userPic">
                 </div>
             `
