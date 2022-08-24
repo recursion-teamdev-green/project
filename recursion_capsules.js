@@ -29,7 +29,6 @@ const config = {
     resultPage : document.getElementById("resultPage"),
     gachaBtn : document.getElementById("gachaBtn"),
     userPicDiv : document.getElementById("userPictures"),
-    homeBtn : document.getElementById("homeBtn"),
     loginPage : document.getElementById("loginPage")
 }
 
@@ -55,10 +54,6 @@ document.getElementById("resetBtn").addEventListener("click", function(){
 
 config.gachaBtn.addEventListener("click", function(){
     View.getResult(HelperFunctions.getPersonFromGacha());
-})
-
-config.homeBtn.addEventListener("click", function(){
-    View.switchDisplay(config.resultPage, config.homePage);
 })
 
 
@@ -175,15 +170,16 @@ class View{
                                 <div class="d-flex justify-content-center align-items-center offset-2">
                                     <p class="m-0 pe-2">結果をTweetする</p>
                                     <div class="m-3" id="twitter-button">
-                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS">Twitter</a>
+                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS">Tweet</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="redrawBtn" class="pt-3">
-                    <button class="btn btn-secondary btn-lg" id="againBtn">もう一度引く</button>
+                <div id="redrawBtn" class="pt-3 d-flex">
+                    <button class="btn btn-secondary btn-lg m-2" id="againBtn">もう一度引く</button>
+                    <button class="btn btn-secondary btn-lg m-2" id="homeBtn">戻る</button>
                 </div>
             </div>
         `;
@@ -191,6 +187,11 @@ class View{
             View.switchDisplay(config.resultPage, config.homePage);
             View.getResult(HelperFunctions.getPersonFromGacha());
         })
+
+        document.querySelectorAll("#homeBtn")[0].addEventListener("click", function(){
+            View.switchDisplay(config.resultPage, config.homePage);
+        })
+
         View.gachaAnimation("on");
         config.gachaBtn.disabled = true;
         setTimeout(() => {
