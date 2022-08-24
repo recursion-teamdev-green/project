@@ -1,9 +1,10 @@
 class Person{
-    constructor(name, img, rarity, position, info, comment, twUrl, rePfUrl) {
+    constructor(name, img, rarity, position, title, info, comment, twUrl, rePfUrl) {
         this.name = name;
         this.img = img;
         this.rarity = rarity;
         this.position = position;
+        this.title = title;
         this.info = info;
         this.comment = comment;
         this.twUrl =twUrl;
@@ -144,7 +145,7 @@ class View{
                                 <img src="${person.img}" alt="" class="img-fluid imgFit ">
                             </div>
                             <div class="m-0 px-2 text-center">
-                                <p class="m-0">ここに表示するものがPersonクラスに欲しいです</p>
+                                <p class="m-0">${person.title}</p>
                             </div>
                             <hr>
                             <div class="card-body bg-white text-center pt-0">
@@ -230,6 +231,7 @@ let takeshi = new Person(
     "https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0",
     "N",
     "ただのユーザー",
+    "称号(仮）",
     "駆け出しユーザー",
     "とにかくこれからも楽しくRecursionやっていきます！",
     "https://twitter.com/orange_take4",
@@ -241,6 +243,7 @@ let shinya = new Person(
     "https://recursionist.io/img/front/business/recursion-bear.png",
     "SR",
     "福岡県出身",
+    "RecursionUserをCSの世界に引き込んだ男",
     "Recursion 共同創業者",
     "「共同創業者のShinyaです！」",
     "https://twitter.com/shinya_cal",
@@ -254,6 +257,7 @@ let rare = new Person(
     "R",
     "福岡県出身",
     "メンターの代表格",
+    "現役ソフトウェアエンジニア",
     "メンターするのでチーム開発カモン！",
     "https://twitter.com/recursioncs",
     "https://recursionist.io/users/shinya"
@@ -265,6 +269,7 @@ let rare2 = new Person(
     "R",
     "福岡県出身",
     "Recursion最古参",
+    "二児の母",
     "Recursionのことはすべて知ってるよ",
     "https://twitter.com/recursioncs",
     "https://recursionist.io/users/shinya"
@@ -276,6 +281,7 @@ let jeffryUR = new Person(
     "UR",
     "Jeffry進化版",
     "レア中のレア",
+    "Recursion共同創業者",
     "誰も俺を止められない",
     "https://twitter.com/jalva_dev",
     "https://recursionist.io/users/shinya"
@@ -301,7 +307,6 @@ let urList = getListByRarity(personList, "UR");
 document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
 
 //ダミーユーザー
-
 
 /*
 dummyUser = new User();
