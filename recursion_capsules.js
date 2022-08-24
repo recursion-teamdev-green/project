@@ -20,22 +20,6 @@ class User{
         this.drawnList = [];
     }
 
-
-    addResult(person){
-        this.numOfDraws += 1;
-        if(!this.drawnList.includes(person)){
-            this.drawnList.push(person);
-            config.userPicDiv.innerHTML += `
-                <img src=${person.img} class="userPic">
-            `
-        }
-        document.getElementById("numOfGacha").innerHTML = `ガチャを回した数: ${this.numOfDraws}回`;
-        document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: ${this.drawnList.length}/${personList.length}`;
-        if(this.drawnList.length == personList.length){
-            console.log("complete");
-            // トップページのデザインを変更
-        }
-    }
 }
 
 
@@ -166,7 +150,7 @@ class View{
                             <hr>
                             <div class="card-body bg-white text-center pt-0">
                                 <h5 id="person-name" class="card-title">${person.name}</h5>
-                                <h6 class="card-subtitle">${person.position}</h6>
+                                <h6 class="card-subtitle text-secondary">${person.position}</h6>
                                 <hr>
                                 <p class="card-text">${person.info}</p>
                                 <hr>
