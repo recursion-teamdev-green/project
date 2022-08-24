@@ -462,7 +462,7 @@ const personList =
         // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
         // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
         // new Person("name", img, rarity, "position", "title", "info", "comment", "twUrl", "rePfUrl"),
-        new Person("Takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "カナダ留学中","一言:とにかくこれからも楽しくRecursionやっていきます!","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
+        new Person("Takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "神奈川県出身/現在カナダ留学中","一言: Recursionを通してみかんのように一皮むけたいです","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
         // new Person("Taro", img, "N", "Recursionガチャ!ガチャ!開発者", title, info, comment, twUrl, rePfUrl),
         new Person("Kai", "images/kai.PNG", "N", "Recursionガチャ!ガチャ!開発者", "駆け出しユーザー", "埼玉県川越市出身/高卒,元電気工事士/エンジニアとして就職することを目指してます!", "聖書を研究してます！生活に役立つ内容多いです!", "https://twitter.com/OiLactee", "https://recursionist.io/users/Kai10")
     ];
