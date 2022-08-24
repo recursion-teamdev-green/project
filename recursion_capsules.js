@@ -29,7 +29,6 @@ const config = {
     resultPage : document.getElementById("resultPage"),
     gachaBtn : document.getElementById("gachaBtn"),
     userPicDiv : document.getElementById("userPictures"),
-    homeBtn : document.getElementById("homeBtn"),
     loginPage : document.getElementById("loginPage")
 }
 
@@ -50,6 +49,7 @@ document.getElementById("resetBtn").addEventListener("click", function(){
         localStorage.removeItem(currentUser.name);
         View.switchDisplay(config.homePage, config.loginPage);
         View.resetHtml();
+        View.resetPersonList();
     }
 })
 
@@ -57,12 +57,9 @@ config.gachaBtn.addEventListener("click", function(){
     View.getResult(HelperFunctions.getPersonFromGacha());
 })
 
-config.homeBtn.addEventListener("click", function(){
-    View.switchDisplay(config.resultPage, config.homePage);
-})
-
 
 let currentUser = new User("");
+
 function startNewGame(userName){
     document.getElementById("user-name").innerHTML = userName;
     if(localStorage.getItem(userName) == null){
@@ -75,6 +72,7 @@ function startNewGame(userName){
         View.displayPersonList(currentUser);
     }
     View.switchDisplay(config.loginPage, config.homePage);
+    View.createAllPersonList();
 }
 
 class HelperFunctions{
@@ -112,6 +110,7 @@ class HelperFunctions{
     static addPerson(person){
         currentUser.numOfDraws += 1;
         if(!currentUser.drawnList.some(object => object.name === person.name)){
+            View.changePersonList(person);
             currentUser.drawnList.push(person);
             config.userPicDiv.innerHTML += `
                 <div class="clickable" onclick="View.reviewProfile(${currentUser.drawnList.length - 1})">
@@ -175,15 +174,16 @@ class View{
                                 <div class="d-flex justify-content-center align-items-center offset-2">
                                     <p class="m-0 pe-2">結果をTweetする</p>
                                     <div class="m-3" id="twitter-button">
-                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS">Twitter</a>
+                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS">Tweet</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="redrawBtn" class="pt-3">
-                    <button class="btn btn-secondary btn-lg" id="againBtn">もう一度引く</button>
+                <div id="redrawBtn" class="pt-3 d-flex">
+                    <button class="btn btn-secondary btn-lg m-2" id="againBtn">もう一度引く</button>
+                    <button class="btn btn-secondary btn-lg m-2" id="homeBtn">戻る</button>
                 </div>
             </div>
         `;
@@ -191,6 +191,11 @@ class View{
             View.switchDisplay(config.resultPage, config.homePage);
             View.getResult(HelperFunctions.getPersonFromGacha());
         })
+
+        document.querySelectorAll("#homeBtn")[0].addEventListener("click", function(){
+            View.switchDisplay(config.resultPage, config.homePage);
+        })
+
         View.gachaAnimation("on");
         config.gachaBtn.disabled = true;
         setTimeout(() => {
@@ -282,6 +287,55 @@ class View{
         })
         View.switchDisplay(config.homePage, config.resultPage);
     }
+
+    static changePersonList(person){
+        document.getElementById(person.name).classList.add("text-white");
+    }
+
+    static createPersonList(rankList, list){
+        if(rankList == "urList"){
+            for(let i = 0; i < list.length; i++){
+                if(!currentUser.drawnList.some(object => object.name === list[i].name)){
+                    document.getElementById(rankList).innerHTML += `
+                        <p id="${list[i].name}" class="m-0 ps-3 text-secondary">???</p>
+                    `
+                }
+                else{
+                    document.getElementById(rankList).innerHTML += `
+                        <p id="${list[i].name}" class="m-0 ps-3 text-white">???</p>
+                    `
+                }
+            }
+        }
+        else{
+            for(let i = 0; i < list.length; i++){
+                if(!currentUser.drawnList.some(object => object.name === list[i].name)){
+                    document.getElementById(rankList).innerHTML += `
+                        <p id="${list[i].name}" class="m-0 ps-3 text-secondary">${list[i].name}</p>
+                    `
+                }
+                else{
+                    document.getElementById(rankList).innerHTML += `
+                        <p id="${list[i].name}" class="m-0 ps-3 text-white">${list[i].name}</p>
+                    `
+                }
+            }
+        }
+    }
+
+    static createAllPersonList(){
+        View.createPersonList("nList", nList);
+        View.createPersonList("rList", rList);
+        View.createPersonList("srList", srList);
+        View.createPersonList("urList", urList);
+    }
+
+    static resetPersonList(){
+        document.getElementById("nList").innerHTML = "";
+        document.getElementById("rList").innerHTML = "";
+        document.getElementById("srList").innerHTML = "";
+        document.getElementById("urList").innerHTML = "";
+    }
 }
 
 
@@ -372,7 +426,7 @@ const personList =
         // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
         // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
         // new Person("name", img, rarity, "position", "title", "info", "comment", "twUrl", "rePfUrl"),
-        new Person("takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "カナダ留学中","一言:とにかくこれからも楽しくRecursionやっていきます!","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
+        new Person("Takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "カナダ留学中","一言:とにかくこれからも楽しくRecursionやっていきます!","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
         // new Person("Taro", img, "N", "Recursionガチャ!ガチャ!開発者", title, info, comment, twUrl, rePfUrl),
         new Person("Kai", "images/kai.PNG", "N", "Recursionガチャ!ガチャ!開発者", "駆け出しユーザー", "埼玉県川越市出身/高卒,元電気工事士/エンジニアとして就職することを目指してます!", "聖書を研究してます！生活に役立つ内容多いです!", "https://twitter.com/OiLactee", "https://recursionist.io/users/Kai10")
     ];
@@ -389,6 +443,9 @@ let nList = getListByRarity(personList, "N");
 let rList = getListByRarity(personList, "R");
 let srList = getListByRarity(personList, "SR");
 let urList = getListByRarity(personList, "UR");
+
+
+
 
 document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
 
