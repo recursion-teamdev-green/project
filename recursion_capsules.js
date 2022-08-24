@@ -104,20 +104,20 @@ class HelperFunctions{
     }
 
     static updateUser(person){
-        HelperFunctions.addPerson(currentUser, person);
+        HelperFunctions.addPerson(person);
         localStorage.setItem(currentUser.name, JSON.stringify(currentUser));
     }
 
-    static addPerson(user, person){
-        user.numOfDraws += 1;
-        if(!user.drawnList.includes(person)){
-            user.drawnList.push(person);
+    static addPerson(person){
+        currentUser.numOfDraws += 1;
+        if(!currentUser.drawnList.some(object => object.name === person.name)){
+            currentUser.drawnList.push(person);
             config.userPicDiv.innerHTML += `
                 <img src=${person.img} class="userPic">
             `
         }
-        View.updateHtml(user);
-        if(user.drawnList.length == personList.length){
+        View.updateHtml(currentUser);
+        if(currentUser.drawnList.length == personList.length){
             console.log("complete");
             // トップページのデザインを変更
         }
@@ -159,18 +159,21 @@ class View{
                                 <div class="d-flex justify-content-around">
                                     <a href=${person.twUrl}>
                                         TwitterURL
-                                        <!-- <i class="fa-brands fa-twitter"></i> -->
+                                        <i class="fa-brands fa-twitter"></i>
                                         <!-- ↑なぜか反映されなかったのでコメントアウトしてます -->
                                     </a>
                                     <a href=${person.rePfUrl}>
                                         RecursionPFURL
+                                        <img src="https://pbs.twimg.com/profile_images/1351355180395028483/fmvRE5cO_400x400.jpg" height="30px">
                                         <!-- ほんとはRecursionのIconいれたい -->
                                     </a>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-center align-items-center offset-2">
                                     <p class="m-0 pe-2">結果をTweetする</p>
-                                    <div class="m-3" id="twitter-button"></div>
+                                    <div class="m-3" id="twitter-button">
+                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS">Twitter</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
