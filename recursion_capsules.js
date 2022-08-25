@@ -81,6 +81,7 @@ class HelperFunctions{
         let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
         let person = HelperFunctions.getRandomPersonByRank(rank);
         return person;
+
     }
 
     static getRandomPersonByRank(rank){
@@ -135,8 +136,25 @@ class View{
     }
 
     static getResult(person){
-        config.resultPage.innerHTML = `
-            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4">
+        let parent = config.resultPage;
+        parent.innerHTML = "";
+        if(person.rarity == "UR"){
+            let darkForce = document.createElement("div");
+            let d1 = document.createElement("div");
+            let d2 = document.createElement("div");
+            let d3 = document.createElement("div");
+            darkForce.id="darkForce";
+            d1.id = "d1";
+            d2.id = "d2";
+            d3.id = "d3";
+            d2.append(d3);
+            d1.append(d2);
+            darkForce.append(d1);
+            parent.append(darkForce);
+            parent = darkForce; 
+        }
+        parent.innerHTML += `
+            <div class="d-flex flex-column justify-content-around align-items-center pt-4 pb-4 cardDiv">
                 <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
                     <div>
                         <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
@@ -162,12 +180,10 @@ class View{
                                     <a href=${person.twUrl}>
                                         TwitterURL
                                         <i class="fa-brands fa-twitter"></i>
-                                        <!-- ↑なぜか反映されなかったのでコメントアウトしてます -->
                                     </a>
                                     <a href=${person.rePfUrl}>
                                         RecursionPFURL
                                         <img src="https://pbs.twimg.com/profile_images/1351355180395028483/fmvRE5cO_400x400.jpg" height="30px">
-                                        <!-- ほんとはRecursionのIconいれたい -->
                                     </a>
                                 </div>
                                 <hr>
@@ -187,12 +203,12 @@ class View{
                 </div>
             </div>
         `;
-        document.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
+        parent.querySelectorAll("#againBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
             View.getResult(HelperFunctions.getPersonFromGacha());
         })
 
-        document.querySelectorAll("#homeBtn")[0].addEventListener("click", function(){
+        parent.querySelectorAll("#homeBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
         })
 
@@ -238,8 +254,25 @@ class View{
 
     static reviewProfile(personIndex){
         let person = currentUser.drawnList[personIndex];
-        config.resultPage.innerHTML = `
-            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4">
+        let parent = config.resultPage;
+        parent.innerHTML = "";
+        if(person.rarity == "UR"){
+            let darkForce = document.createElement("div");
+            let d1 = document.createElement("div");
+            let d2 = document.createElement("div");
+            let d3 = document.createElement("div");
+            darkForce.id="darkForce";
+            d1.id = "d1";
+            d2.id = "d2";
+            d3.id = "d3";
+            d2.append(d3);
+            d1.append(d2);
+            darkForce.append(d1);
+            parent.append(darkForce);
+            parent = darkForce; 
+        }
+        parent.innerHTML += `
+            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4 cardDiv">
                 <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
                     <div>
                         <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
@@ -264,12 +297,11 @@ class View{
                                 <div class="d-flex justify-content-around">
                                     <a href=${person.twUrl}>
                                         TwitterURL
-                                        <!-- <i class="fa-brands fa-twitter"></i> -->
-                                        <!-- ↑なぜか反映されなかったのでコメントアウトしてます -->
+                                        <i class="fa-brands fa-twitter"></i>
                                     </a>
                                     <a href=${person.rePfUrl}>
                                         RecursionPFURL
-                                        <!-- ほんとはRecursionのIconいれたい -->
+                                        <img src="https://pbs.twimg.com/profile_images/1351355180395028483/fmvRE5cO_400x400.jpg" height="30px">
                                     </a>
                                 </div>
                                 <hr>
@@ -290,6 +322,9 @@ class View{
 
     static changePersonList(person){
         document.getElementById(person.name).classList.add("text-white");
+        if(person.rarity == "UR"){
+            document.getElementById(person.name).innerHTML = person.name;
+        }
     }
 
     static createPersonList(rankList, list){
@@ -302,7 +337,7 @@ class View{
                 }
                 else{
                     document.getElementById(rankList).innerHTML += `
-                        <p id="${list[i].name}" class="m-0 ps-3 text-white">???</p>
+                        <p id="${list[i].name}" class="m-0 ps-3 text-white">${list[i].name}</p>
                     `
                 }
             }
@@ -426,7 +461,7 @@ const personList =
         // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
         // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
         // new Person("name", img, rarity, "position", "title", "info", "comment", "twUrl", "rePfUrl"),
-        new Person("Takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "カナダ留学中","一言:とにかくこれからも楽しくRecursionやっていきます!","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
+        new Person("Takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "神奈川県出身/現在カナダ留学中","一言: Recursionを通してみかんのように一皮むけたいです","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
         // new Person("Taro", img, "N", "Recursionガチャ!ガチャ!開発者", title, info, comment, twUrl, rePfUrl),
         new Person("Kai", "images/kai.PNG", "N", "Recursionガチャ!ガチャ!開発者", "駆け出しユーザー", "埼玉県川越市出身/高卒,元電気工事士/エンジニアとして就職することを目指してます!", "聖書を研究してます！生活に役立つ内容多いです!", "https://twitter.com/OiLactee", "https://recursionist.io/users/Kai10")
     ];
