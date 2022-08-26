@@ -207,6 +207,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     cursor: pointer;
 }
 
+.border-lightBlue {
+    border-color: #1E88E5;
+}
+
+.rounded-radius {
+    border-radius: 0.85rem !important;
+}
+
 .loginBox{
     height: 40%;
     width: auto;
@@ -221,6 +229,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     height: 50px;
     width: 50px;
     margin: 0.5rem;
+    border: 1px solid #1E88E5;
 }
 
 .no-scroll{
@@ -276,6 +285,10 @@ hr {
 
 .imgFit {
     object-fit: contain;
+}
+
+.maxH-300 {
+    max-height: 300px;
 }
 
 .pb-50 {
