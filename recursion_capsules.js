@@ -29,8 +29,12 @@ const config = {
     resultPage : document.getElementById("resultPage"),
     gachaBtn : document.getElementById("gachaBtn"),
     userPicDiv : document.getElementById("userPictures"),
-    loginPage : document.getElementById("loginPage")
+    loginPage : document.getElementById("loginPage"),
+    gachaSound : new Audio("sounds/gacha_sound.mp3"),
+    resultSound : new Audio("sounds/result_sound.mp3"),
+    resultSoundUR : new Audio("sounds/result_sound_ur.mp3")
 }
+config.gachaSound.playbackRate = 4.5;
 
 document.querySelectorAll(".name-input")[0].addEventListener("keydown", function(e){
     if(e.key == "Enter"){
@@ -55,6 +59,7 @@ document.getElementById("resetBtn").addEventListener("click", function(){
 
 config.gachaBtn.addEventListener("click", function(){
     View.getResult(HelperFunctions.getPersonFromGacha());
+    // config.sound.play();
 })
 
 
@@ -213,12 +218,19 @@ class View{
         })
 
         View.gachaAnimation("on");
+        config.gachaSound.play();
         config.gachaBtn.disabled = true;
         setTimeout(() => {
             View.switchDisplay(config.homePage, config.resultPage);
             config.gachaBtn.disabled = false;
             this.gachaAnimation("off");
             HelperFunctions.updateUser(person);
+            if(person.rarity == "UR"){
+                config.resultSoundUR.play();
+            }
+            else{
+                config.resultSound.play();
+            }
         }, 2000);
     }
 
