@@ -18,7 +18,6 @@ class User{
         this.name = name;
         this.numOfDraws = 0;
         this.drawnList = [];
-        this.complete = false;
     }
 
 }
@@ -55,7 +54,6 @@ document.getElementById("resetBtn").addEventListener("click", function(){
         View.switchDisplay(config.homePage, config.loginPage);
         View.resetHtml();
         View.resetPersonList();
-        View.removeBalloons();
     }
 })
 
@@ -80,7 +78,6 @@ function startNewGame(userName){
     }
     View.switchDisplay(config.loginPage, config.homePage);
     View.createAllPersonList();
-    View.completeDisplay();
 }
 
 class HelperFunctions{
@@ -129,8 +126,8 @@ class HelperFunctions{
         }
         View.updateHtml(currentUser);
         if(currentUser.drawnList.length == personList.length){
-            currentUser.complete = true;
-            View.completeDisplay();
+            console.log("complete");
+            // トップページのデザインを変更
         }
     }
 }
@@ -386,18 +383,6 @@ class View{
         document.getElementById("srList").innerHTML = "";
         document.getElementById("urList").innerHTML = "";
     }
-
-    static completeDisplay(){
-        if(!document.getElementById("balloons").classList.contains("balloons") && currentUser.complete){
-            document.getElementById("balloons").classList.add("balloons");
-            View.switchDisplay(document.getElementById("transparent-text"), document.getElementById("complete-text"));
-        }
-    }
-
-    static removeBalloons(){
-        document.getElementById("balloons").classList.remove("balloons");
-        View.switchDisplay(document.getElementById("complete-text"), document.getElementById("transparent-text"));
-    }
 }
 
 
@@ -467,8 +452,6 @@ class View{
 // personList.push(takeshi, shinya);
 // personList.push(rare, rare2, jeffryUR);
 
-
-
 const personList =
     [
         new Person("魔改造Jeffry","https://user-images.githubusercontent.com/51078652/185964168-41ded5e3-6c28-4364-a5d9-0a4e8f12faf8.jpg","UR","Jeffry進化版", "ウルトラレア", "info", "誰も俺を止められない", "https://twitter.com/jalva_dev","https://recursionist.io/users/shinya"),
@@ -504,6 +487,8 @@ let nList = getListByRarity(personList, "N");
 let rList = getListByRarity(personList, "R");
 let srList = getListByRarity(personList, "SR");
 let urList = getListByRarity(personList, "UR");
+
+
 
 
 document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
