@@ -100,7 +100,6 @@ function startNewGame(userName){
 
 class HelperFunctions{
     static getPersonFromGacha(){
-        return urList[0];
         let random = Math.floor(Math.random() * 100);
         let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
         let person = HelperFunctions.getRandomPersonByRank(rank);
