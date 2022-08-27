@@ -183,7 +183,7 @@ class View{
                     <div>
                         <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
                     </div>
-                    <div id="rarityBg" class="card ${person.rarity.toLowerCase()}Bg p-3">
+                    <div id="rarityBg" class="card col-12 ${person.rarity.toLowerCase()}Bg p-3">
                         <div class="card bg-white">
                             <div id="cardImg" class="col-12 d-flex justify-content-center maxH-30Vh">
                                 <img src="${person.img}" alt="" class="img-fluid imgFit ">
