@@ -73,6 +73,10 @@ config.gachaBtn.addEventListener("click", function(){
     // config.sound.play();
 })
 
+document.getElementById("moreDescription").addEventListener("click", function(){
+    View.descriptionHtml();
+})
+
 
 let currentUser = new User("");
 
@@ -381,6 +385,32 @@ class View{
                 }
             }
         }
+    }
+
+    static descriptionHtml(){
+        
+        config.resultPage.innerHTML = `
+            <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4 cardDiv">
+                <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Recursionガチャ!ガチャ!とは?</h5>
+                        <p class="card-text">
+                            　Recursionガチャ!ガチャ!は、コンピュータ・サイエンスの学習プラットフォーム<span><a href="https://recursionist.io/" target="_blank">Recursion</a></span>で開催されているイベント「チーム開発体験会」の課題として制作された、Recursionのコミュニティに入って間もないユーザーに、メンターやイベント企画者などを紹介するガチャガチャです。<br><br>
+                            　ガチャを引くボタンを押すとガチャガチャの機械からメンターさんなどが出現します。結果画面からその方のTwitterやRecursionのプロフィールに飛ぶことができ、ガチャ結果をtweetすることもできます。一度引いた人は、取得済みユーザーの写真をクリックすると、詳細情報が見られます。データはnameと紐づけられて保存されるので、全キャラ取得目指して頑張ってください！全キャラ取得目指して頑張ってください！隠れURがでたらいいことあるかも...?
+                            <!-- Recursionのコミュニティに入って間もないユーザーに、メンターやイベント企画者などを紹介するガチャガチャです。 -->
+                        </p>
+                    </div>
+                </div>
+                <div id="redrawBtn" class="pt-3">
+                    <button class="btn btn-secondary btn-lg" id="backBtn">戻る</button>
+                </div>
+            </div>
+        `
+
+        document.querySelectorAll("#backBtn")[0].addEventListener("click", function(){
+                View.switchDisplay(config.resultPage, config.homePage);
+        })
+        View.switchDisplay(config.homePage, config.resultPage);
     }
 
     static createAllPersonList(){
