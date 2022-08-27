@@ -197,7 +197,7 @@ class View{
                                 <div class="d-flex justify-content-center align-items-center offset-2">
                                     <p class="m-0 pe-2">結果をTweetする</p>
                                     <div class="m-2" id="twitter-button">
-                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS,Recursionガチャ">Tweet</a>
+                                        <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdev-green.github.io/project/&hashtags=RecursionCS,Recursionガチャ">Tweet</a>
                                     </div>
                                 </div>
                             </div>
