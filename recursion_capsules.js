@@ -100,6 +100,7 @@ function startNewGame(userName){
 
 class HelperFunctions{
     static getPersonFromGacha(){
+        return urList[0];
         let random = Math.floor(Math.random() * 100);
         let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
         let person = HelperFunctions.getRandomPersonByRank(rank);
@@ -233,6 +234,11 @@ class View{
             View.switchDisplay(config.resultPage, config.homePage);
         })
 
+        if(person.rarity == "UR"){
+            document.querySelectorAll("#cardImg")[0].classList.remove("maxH-30Vh");
+            document.querySelectorAll("#cardImg")[0].classList.add("p-1");
+        }
+
         View.gachaAnimation("on");
         config.gachaSound.play();
         config.gachaBtn.disabled = true;
@@ -346,6 +352,10 @@ class View{
         document.querySelectorAll("#backBtn")[0].addEventListener("click", function(){
             View.switchDisplay(config.resultPage, config.homePage);
         })
+        if(person.rarity == "UR"){
+            document.querySelectorAll("#cardImg")[0].classList.remove("maxH-30Vh");
+            document.querySelectorAll("#cardImg")[0].classList.add("p-1");
+        }
         View.switchDisplay(config.homePage, config.resultPage);
     }
 
