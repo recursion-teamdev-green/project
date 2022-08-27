@@ -48,6 +48,16 @@ document.querySelectorAll(".name-input")[0].addEventListener("keydown", function
     }
 })
 
+document.getElementById("loginBtn").addEventListener("click", function(){
+    let userName = document.querySelectorAll(".name-input")[0].value;
+    if(userName == ""){
+        alert("put your name");
+    }
+    else{
+        startNewGame(userName);
+    }
+})
+
 document.getElementById("resetBtn").addEventListener("click", function(){
     if(confirm("データをリセットしますか？")){
         localStorage.removeItem(currentUser.name);
@@ -67,7 +77,7 @@ config.gachaBtn.addEventListener("click", function(){
 let currentUser = new User("");
 
 function startNewGame(userName){
-    document.getElementById("user-name").innerHTML = "name:　" + userName;
+    document.getElementById("user-name").innerHTML = `name:　<span class="span-border-bottom">` + userName + `</span>`;
     if(localStorage.getItem(userName) == null){
         console.log("no data");
         currentUser = new User(userName);
@@ -174,7 +184,7 @@ class View{
                             <div id="cardImg" class="col-12 d-flex justify-content-center maxH-30Vh">
                                 <img src="${person.img}" alt="" class="img-fluid imgFit ">
                             </div>
-                            
+
                             <div class="card-body bg-white text-center pt-0">
                                 <h5 id="person-name" class="card-title">${person.name}</h5>
                                 <h6 class="card-subtitle text-secondary">${person.position}</h6>
@@ -253,8 +263,12 @@ class View{
     static displayPersonList(user){
         for(let i = 0; i < user.drawnList.length; i++){
             config.userPicDiv.innerHTML += `
-                <div class="clickable" onclick="View.reviewProfile(${i})">
-                        <img src=${user.drawnList[i].img} class="userPic">
+                <div class="clickable userPic-margin" onclick="View.reviewProfile(${i})">
+                    <div class="m-0 userPic-padding ${user.drawnList[i].rarity.toLowerCase()}Bg radius50  d-flex justify-content-center align-items-center">
+                        <div class="m-0 bg-white radius50  d-flex justify-content-center align-items-center">
+                            <img src=${user.drawnList[i].img} class="userPic">
+                        </div>
+                    </div>
                 </div>
             `;
         }
@@ -291,7 +305,7 @@ class View{
                     <div>
                         <h1 id="rarityText" class="${person.rarity.toLowerCase()}Effect">${person.rarity}</h1>
                     </div>
-                    <div id="rarityBg" class="card ${person.rarity.toLowerCase()}Bg p-3">
+                    <div id="rarityBg" class="card col-12 ${person.rarity.toLowerCase()}Bg p-3">
                         <div class="card bg-white">
                             <div id="cardImg" class="col-12 d-flex justify-content-center maxH-30Vh">
                                 <img src="${person.img}" alt="" class="img-fluid imgFit ">
@@ -307,11 +321,11 @@ class View{
                                 <hr>
                                 <div class="d-flex justify-content-around">
                                     <a href=${person.twUrl}>
-                                        TwitterURL
+                                        Twitter
                                         <i class="fa-brands fa-twitter"></i>
                                     </a>
                                     <a href=${person.rePfUrl}>
-                                        RecursionPFURL
+                                        RecursionPF
                                         <img src="https://pbs.twimg.com/profile_images/1351355180395028483/fmvRE5cO_400x400.jpg" height="30px">
                                     </a>
                                 </div>
@@ -406,7 +420,7 @@ const personList =
         new Person("Acha", "images/acha.png", "R", "Gitワークショップのメンター", "", "Recursionと出会って五十路でエンジニアデビューを果たした駆け出しおばちゃんエンジニア", "一言:だいじょうぶます。Gitこわくない", "https://twitter.com/Acha_for_CS", " https://recursionist.io/users/atsu201005"),
         // new Person("Kown", img, rarity, position, "title", info, comment, twUrl, rePfUrl),
         new Person("ハルキ", "images/haruki.png", "R", "初心者用チーム開発メンター", "title", "出身:長崎 / 職業:設備の保全作業してます", "一言:落とし物を届けに交番に行って身分証として免許証を見せたら、3か月ほど期限切れでした🥶。車運転してないか問い詰められちゃいました😂。", "https://twitter.com/d01rEe7nqjn3UCT", "https://recursionist.io/users/harki"),
-        new Person("Nori", "images/nori.png", "R", "初回テストユーザからの参加者,OSS開発者", "tiRecursionメンバー最初のOSS開発者!", "東京都出身/経歴:大学院(化学)-> 機械設計エンジニア(3社)-> ソフトウェアエンジニア", "Recursionの木構造の問題で、フーバーするとホップアップで出てくる可視化された木構造は、OSSとして作りました。Recursion内では最古参ですが、ソフトウェアエンジニアとしては駆け出しエンジニアです!", "https://twitter.com/ut3gs", "https://recursionist.io/users/Nori"),
+        new Person("Nori", "images/nori.png", "R", "初回テストユーザからの参加者,OSS開発者", "tiRecursionメンバー最初のOSS開発者!", "東京都出身/経歴:大学院(化学)-> 機械設計エンジニア(3社)-> ソフトウェアエンジニア", "一言:ロードスター買います！", "https://twitter.com/ut3gs", "https://recursionist.io/users/Nori"),
         new Person("Sorasuke", "images/sorasuke.png", "R", "イベント計画者", "Recursionで学びシリコンバレーで就職！", "東京生まれ/海外大卒/シリコンバレーのソフトウェアエンジニア", "一言:恋かと思ったらCTOからフィードバックをもらっているだけでした。", "https://twitter.com/Sorasukeprog", "https://recursionist.io/users/Sorasuke"),
         new Person("Masa", "images/masa.png", "R", "チーム開発メンター", "title", "北陸圏産高卒エンジニア", "一言:タケノコよりキノコ派です", "https://twitter.com/soylove2", "https://recursionist.io/users/MASA"),
         new Person("fanta", "images/fanta.png", "R", "チーム開発メンター", "title", "栃木県出身", "エンジニア未経験ですがメンターを始めました！名ばかりのメンターにならないように日々修行です😂", "https://twitter.com/fantafanta335", "https://recursionist.io/users/fanta335"),
