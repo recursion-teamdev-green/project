@@ -157,6 +157,7 @@ class View{
         prev.classList.remove("d-block");
         next.classList.add("d-block");
         next.classList.remove("d-none");
+        next.scrollTop = 0;
     }
 
     static getResult(person){
