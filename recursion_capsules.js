@@ -24,7 +24,6 @@ class User{
 }
 
 
-
 const config = {
     homePage : document.getElementById("homePage"),
     resultPage : document.getElementById("resultPage"),
@@ -83,6 +82,8 @@ function startNewGame(userName){
     View.completeDisplay();
 }
 
+
+
 class HelperFunctions{
     static getPersonFromGacha(){
         let random = Math.floor(Math.random() * 100);
@@ -135,6 +136,7 @@ class HelperFunctions{
     }
 }
 
+
 class View{
     static switchDisplay(prev, next){
         prev.classList.add("d-none");
@@ -172,10 +174,7 @@ class View{
                             <div id="cardImg" class="col-12 d-flex justify-content-center maxH-30Vh">
                                 <img src="${person.img}" alt="" class="img-fluid imgFit ">
                             </div>
-                            <div class="m-0 px-2 text-center">
-                                <p class="m-0">${person.title}</p>
-                            </div>
-                            <hr>
+                            
                             <div class="card-body bg-white text-center pt-0">
                                 <h5 id="person-name" class="card-title">${person.name}</h5>
                                 <h6 class="card-subtitle text-secondary">${person.position}</h6>
@@ -197,7 +196,7 @@ class View{
                                 <hr>
                                 <div class="d-flex justify-content-center align-items-center offset-2">
                                     <p class="m-0 pe-2">結果をTweetする</p>
-                                    <div class="m-3" id="twitter-button">
+                                    <div class="m-2" id="twitter-button">
                                         <a href="https://twitter.com/intent/tweet?text=Recursionガチャで「${person.name}」さんを${currentUser.numOfDraws + 1}回目で引けました！&url=https://recursion-teamdiv-green.github.io/project/&hashtags=RecursionCS,Recursionガチャ">Tweet</a>
                                     </div>
                                 </div>
@@ -297,10 +296,7 @@ class View{
                             <div id="cardImg" class="col-12 d-flex justify-content-center maxH-30Vh">
                                 <img src="${person.img}" alt="" class="img-fluid imgFit ">
                             </div>
-                            <div class="m-0 px-2 text-center">
-                                <p class="m-0">${person.title}</p>
-                            </div>
-                            <hr>
+
                             <div class="card-body bg-white text-center pt-0">
                                 <h5 id="person-name" class="card-title">${person.name}</h5>
                                 <h6 class="card-subtitle">${person.position}</h6>
@@ -401,92 +397,23 @@ class View{
 }
 
 
-
-// let takeshi = new Person(
-//     "takeshi",
-//     "https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0",
-//     "N",
-//     "ただのユーザー",
-//     "称号(仮）",
-//     "駆け出しユーザー",
-//     "とにかくこれからも楽しくRecursionやっていきます！",
-//     "https://twitter.com/orange_take4",
-//     "https://recursionist.io/users/takeshi8989"
-// );
-
-// let shinya = new Person(
-//     "Shinya",
-//     "https://recursionist.io/img/front/business/recursion-bear.png",
-//     "SR",
-//     "福岡県出身",
-//     "RecursionUserをCSの世界に引き込んだ男",
-//     "Recursion 共同創業者",
-//     "「共同創業者のShinyaです！」",
-//     "https://twitter.com/shinya_cal",
-//     "https://recursionist.io/users/shinya"
-// );
-
-// // 仮のPersonなのであとで削除
-// let rare = new Person(
-//     "RarePerson",
-//     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/LetterR.svg/800px-LetterR.svg.png",
-//     "R",
-//     "福岡県出身",
-//     "メンターの代表格",
-//     "現役ソフトウェアエンジニア",
-//     "メンターするのでチーム開発カモン！",
-//     "https://twitter.com/recursioncs",
-//     "https://recursionist.io/users/shinya"
-// )
-
-// let rare2 = new Person(
-//     "RarePerson2",
-//     "https://www.thoughtco.com/thmb/jtUUbpSwsJTs7Kr4HEdvTagqxZ4=/1732x1272/filters:fill(auto,1)/GettyImages-1036106366-5c58ee26c9e77c00016b4152.jpg",
-//     "R",
-//     "福岡県出身",
-//     "Recursion最古参",
-//     "二児の母",
-//     "Recursionのことはすべて知ってるよ",
-//     "https://twitter.com/recursioncs",
-//     "https://recursionist.io/users/shinya"
-// )
-
-// let jeffryUR = new Person(
-//     "魔改造Jeffry",
-//     "https://user-images.githubusercontent.com/51078652/185964168-41ded5e3-6c28-4364-a5d9-0a4e8f12faf8.jpg",
-//     "UR",
-//     "Jeffry進化版",
-//     "レア中のレア",
-//     "Recursion共同創業者",
-//     "誰も俺を止められない",
-//     "https://twitter.com/jalva_dev",
-//     "https://recursionist.io/users/shinya"
-// )
-
-// let personList = [];
-// personList.push(takeshi, shinya);
-// personList.push(rare, rare2, jeffryUR);
-
-
-
 const personList =
     [
-        new Person("魔改造Jeffry","https://user-images.githubusercontent.com/51078652/185964168-41ded5e3-6c28-4364-a5d9-0a4e8f12faf8.jpg","UR","Jeffry進化版", "ウルトラレア", "info", "誰も俺を止められない", "https://twitter.com/jalva_dev","https://recursionist.io/users/shinya"),
+        new Person("巨人Jeffry","https://user-images.githubusercontent.com/51078652/185964168-41ded5e3-6c28-4364-a5d9-0a4e8f12faf8.jpg","UR","Jeffry進化版", "ウルトラレア", "巨人化したJeffryさん", "Recursionユーザー全員の目標。ブラウザでフレームワークやSQLが動くようにしているめちゃすごMetaエンジニアだ。いつまでも慢心せず、Jeffryさんのように誰かの役に立つソフトウェアを開発できるようこれからも精進しよう。", "https://twitter.com/recursioncs","https://recursionist.io/users/shinya"),
         new Person("Shinya", "https://recursionist.io/img/front/business/recursion-bear.png", "SR", "Recursion共同創業者", "Recursionユーザーをコンピュータサイエンスの世界に連れ込んだ男", "福岡県出身 アメリカ在住 アメリカ渡米時に苦労した", "共同創業者のShinyaです！", "https://twitter.com/shinya_cal", "https://recursionist.io/users/shinya"),
         new Person("Jeffry Alvarado", "https://blog.recursionist.io/wp-content/uploads/2022/02/r8KOXERo_400x400.jpeg", "SR", "Recursion共同創業者", "Metaエンジニア", "グアテマラ系アメリカ人", "日本はもっとソフトウェア開発者溢れている国になってほしい、そして日本からのソフトウェアもっと世界中に広げてほしい", "https://twitter.com/jalva_dev", "https://recursionist.io/users/ja-lv"),
         new Person("Reina", "images/reina.png", "R", "コミュニティマネージャー", "質問回答数No.１子育て中ママ", "鹿児島出身、超初心者からのRecursion最長ユーザー、質問回答数No.１子育て中ママ", "デバッグ大好物のデバッグ芸人です。", "https://twitter.com/reina_second_", "https://recursionist.io/users/%E3%83%AC%E3%82%A4%E3%83%8A"),
         new Person("Acha", "images/acha.png", "R", "Gitワークショップのメンター", "", "Recursionと出会って五十路でエンジニアデビューを果たした駆け出しおばちゃんエンジニア", "一言:だいじょうぶます。Gitこわくない", "https://twitter.com/Acha_for_CS", " https://recursionist.io/users/atsu201005"),
         // new Person("Kown", img, rarity, position, "title", info, comment, twUrl, rePfUrl),
         new Person("ハルキ", "images/haruki.png", "R", "初心者用チーム開発メンター", "title", "出身:長崎 / 職業:設備の保全作業してます", "一言:落とし物を届けに交番に行って身分証として免許証を見せたら、3か月ほど期限切れでした🥶。車運転してないか問い詰められちゃいました😂。", "https://twitter.com/d01rEe7nqjn3UCT", "https://recursionist.io/users/harki"),
-        new Person("Nori", "images/nori.png", "R", "初回テストユーザからの参加者,OSS開発者", "tiRecursionメンバー最初のOSS開発者!(←あってるかわからない)le", "東京都出身/経歴:大学院(化学)-> 機械設計エンジニア(3社)-> ソフトウェアエンジニア", "Recursionの木構造の問題で、フーバーするとホップアップで出てくる可視化された木構造は、OSSとして作りました。Recursion内では最古参ですが、ソフトウェアエンジニアとしては駆け出しエンジニアです!", "https://twitter.com/ut3gs", "https://recursionist.io/users/Nori"),
+        new Person("Nori", "images/nori.png", "R", "初回テストユーザからの参加者,OSS開発者", "tiRecursionメンバー最初のOSS開発者!", "東京都出身/経歴:大学院(化学)-> 機械設計エンジニア(3社)-> ソフトウェアエンジニア", "Recursionの木構造の問題で、フーバーするとホップアップで出てくる可視化された木構造は、OSSとして作りました。Recursion内では最古参ですが、ソフトウェアエンジニアとしては駆け出しエンジニアです!", "https://twitter.com/ut3gs", "https://recursionist.io/users/Nori"),
         new Person("Sorasuke", "images/sorasuke.png", "R", "イベント計画者", "Recursionで学びシリコンバレーで就職！", "東京生まれ/海外大卒/シリコンバレーのソフトウェアエンジニア", "一言:恋かと思ったらCTOからフィードバックをもらっているだけでした。", "https://twitter.com/Sorasukeprog", "https://recursionist.io/users/Sorasuke"),
         new Person("Masa", "images/masa.png", "R", "チーム開発メンター", "title", "北陸圏産高卒エンジニア", "一言:タケノコよりキノコ派です", "https://twitter.com/soylove2", "https://recursionist.io/users/MASA"),
         new Person("fanta", "images/fanta.png", "R", "チーム開発メンター", "title", "栃木県出身", "エンジニア未経験ですがメンターを始めました！名ばかりのメンターにならないように日々修行です😂", "https://twitter.com/fantafanta335", "https://recursionist.io/users/fanta335"),
         new Person("Taka", "images/taka.png", "R", "初心者交流ワークショップ計画者", "To be MukiMukiエンジニア💪", "福岡出身/食品メーカー勤務ですが企画やったり、DB設計とかやってます", "CSと筋トレガチ勢です。ムキムキエンジニアに転職するのが夢です。", "https://twitter.com/orihack35", "https://recursionist.io/users/Takahir-O"),
         new Person("RYU", "images/ryu.png", "R", "公式イベント講師", "title", "大阪出身/京都工芸繊維大学(電子システム学科)(休学して3ヶ月間フィリピン留学)→ 不動産ベンチャーのバックエンドエンジニア(1年)→ 金融系の上場企業(九段下)でエンジニア(Golang)", "一言:周りと比較して疲弊してるんだろ？俺のTwitter見て元気出しな。", "https://twitter.com/Ryu0121cat", ""),
         new Person("あちょ", "images/acho.png", "R", "Recursion古参勢", "title", "半導体のエンジニアを5年した後、起業", "webサービス開発してます。", "https://twitter.com/Acho_prog", "https://recursionist.io/users/acho_prog"),
-        // new Person("name", img, "R", "position", "title", "info", "comment", "twUrl", "rePfUrl"),
-        // new Person("name", img, rarity, "position", "title", "info", "comment", "twUrl", "rePfUrl"),
+
         new Person("takeshi","https://lh3.googleusercontent.com/pw/AL9nZEVfm6Xe1FmewGYmNmEi8NggKDrvCC1azvR0DXdWQunLRgX_b6_eLZVZKj0dh3XCKsbmc4KBO6Vj6aQw0wZset2E_1GmAWqsHpR8JgeS2r3jbXBJeh2DhFJzZdB0mZMjx5I9rzd8OhckapDUGyJng1u5=s828-no?authuser=0","N","Recursionガチャ!ガチャ!開発者","駆け出しユーザー", "神奈川県出身/カナダ留学中","一言: Recursionのおかげで最近一皮むけました","https://twitter.com/orange_take4","https://recursionist.io/users/takeshi8989"),
         new Person("Taro", "https://recursionist.io/storage/avatars/mtYMPtYm5ngayUHxcnCXLxbnVLXHSxWFpR95kv9z.png", "N", "Recursionガチャ!ガチャ!開発者", "title", "広島/ニュージーランド オークランド市出身/日英バイリンガル/最近はサーフィンにどハマり中", "CSとサーフィンでアクティブエンジニアになるのが夢です", "https://twitter.com/purin2121", "https://recursionist.io/users/SalmonMunchies"),
         new Person("Kai", "images/kai.PNG", "N", "Recursionガチャ!ガチャ!開発者", "駆け出しユーザー", "元電気工事士", "I'm doing a Bible study! There is a lot of useful content for your life!", "https://twitter.com/OiLactee", "https://recursionist.io/users/Kai10")
@@ -507,17 +434,3 @@ let urList = getListByRarity(personList, "UR");
 
 
 document.getElementById("numOfPerson").innerHTML = `取得済みユーザー: 0/${personList.length}`;
-
-//ダミーユーザー
-
-/*
-dummyUser = new User();
-dummyUser.numOfDraws = 0;
-
-if(dummyUser.numOfDraws == 0){
-    document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャ,始めます！">Tweet</a>`
-} else {
-    document.getElementById("tweet-button").innerHTML = `<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-via="teamGreen" data-text="Recursionガチャで「${document.getElementById("person-name").innerHTML}」さんを${dummyUser.numOfDraws}回目で引けました！">Tweet</a>`
-}
-twttr.widgets.load();
-*/
