@@ -100,6 +100,7 @@ function startNewGame(userName){
 
 class HelperFunctions{
     static getPersonFromGacha(){
+        return urList[0];
         let random = Math.floor(Math.random() * 100);
         let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
         let person = HelperFunctions.getRandomPersonByRank(rank);
@@ -242,6 +243,10 @@ class View{
         View.gachaAnimation("on");
         config.gachaSound.play();
         config.gachaBtn.disabled = true;
+        let time = 2000;
+        if(person.rarity == "UR"){
+            time = 4000;
+        }
         setTimeout(() => {
             View.switchDisplay(config.homePage, config.resultPage);
             config.gachaBtn.disabled = false;
@@ -253,7 +258,7 @@ class View{
             else{
                 config.resultSound.play();
             }
-        }, 2000);
+        }, time);
     }
 
     static gachaAnimation(onOrOff){
