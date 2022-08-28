@@ -100,7 +100,6 @@ function startNewGame(userName){
 
 class HelperFunctions{
     static getPersonFromGacha(){
-        return urList[0];
         let random = Math.floor(Math.random() * 100);
         let rank = random >= 99 ? "UR" : random >= 89 ? "SR" : random >= 15 ? "R" : "N";
         let person = HelperFunctions.getRandomPersonByRank(rank);
@@ -139,7 +138,11 @@ class HelperFunctions{
             currentUser.drawnList.push(person);
             config.userPicDiv.innerHTML += `
                 <div class="clickable" onclick="View.reviewProfile(${currentUser.drawnList.length - 1})">
-                    <img src=${person.img} class="userPic border border-1">
+                    <div class="m-0 userPic-padding ${person.rarity.toLowerCase()}Bg radius50  d-flex justify-content-center align-items-center">
+                        <div class="m-0 bg-white radius50  d-flex justify-content-center align-items-center">
+                            <img src=${person.img} class="userPic">
+                        </div>
+                    </div>
                 </div>
             `
         }
@@ -398,7 +401,7 @@ class View{
     }
 
     static descriptionHtml(){
-        
+
         config.resultPage.innerHTML = `
             <div class=" d-flex flex-column justify-content-around align-items-center pt-4 pb-4 cardDiv">
                 <div class="card d-flex flex-column justify-content-around align-items-center  col-10 col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 px-3 pb-3">
