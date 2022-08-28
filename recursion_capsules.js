@@ -88,6 +88,10 @@ function startNewGame(userName){
     }
     else{
         currentUser = JSON.parse(localStorage.getItem(userName));
+        // drawnListにオブジェクトが入ってしまっている場合
+        if(typeof currentUser.drawnList[0] != 'number'){
+            HelperFunctions.changeDrawnList(currentUser);
+        }
         View.updateHtml(currentUser);
         View.displayPersonList(currentUser);
     }
@@ -133,11 +137,11 @@ class HelperFunctions{
 
     static addPerson(person){
         currentUser.numOfDraws += 1;
-        if(!currentUser.drawnList.some(object => object.name === person.name)){
+        if(!currentUser.drawnList.some(i => personList[i].name === person.name)){
             View.changePersonList(person);
-            currentUser.drawnList.push(person);
+            currentUser.drawnList.push(personList.indexOf(person));
             config.userPicDiv.innerHTML += `
-                <div class="clickable" onclick="View.reviewProfile(${currentUser.drawnList.length - 1})">
+                <div class="clickable" onclick="View.reviewProfile(${personList.indexOf(person)})">
                     <img src=${person.img} class="userPic border border-1">
                 </div>
             `
@@ -147,6 +151,19 @@ class HelperFunctions{
             currentUser.complete = true;
             View.completeDisplay();
         }
+    }
+
+    static changeDrawnList(user){
+        let newDrawnList = [];
+        for(let i = 0; i < user.drawnList.length; i++){
+            let current = user.drawnList[i];
+            for(let j = 0; j < personList.length; j++){
+                if(current.name == personList[j].name){
+                    newDrawnList.push(j);
+                }
+            }
+        }
+        user.drawnList = newDrawnList;
     }
 }
 
@@ -276,11 +293,12 @@ class View{
 
     static displayPersonList(user){
         for(let i = 0; i < user.drawnList.length; i++){
+            let current = personList[user.drawnList[i]];
             config.userPicDiv.innerHTML += `
-                <div class="clickable userPic-margin" onclick="View.reviewProfile(${i})">
-                    <div class="m-0 userPic-padding ${user.drawnList[i].rarity.toLowerCase()}Bg radius50  d-flex justify-content-center align-items-center">
+                <div class="clickable userPic-margin" onclick="View.reviewProfile(${personList.indexOf(current)})">
+                    <div class="m-0 userPic-padding ${current.rarity.toLowerCase()}Bg radius50  d-flex justify-content-center align-items-center">
                         <div class="m-0 bg-white radius50  d-flex justify-content-center align-items-center">
-                            <img src=${user.drawnList[i].img} class="userPic">
+                            <img src=${current.img} class="userPic">
                         </div>
                     </div>
                 </div>
@@ -295,7 +313,7 @@ class View{
     }
 
     static reviewProfile(personIndex){
-        let person = currentUser.drawnList[personIndex];
+        let person = personList[personIndex];
         let parent = config.resultPage;
         parent.innerHTML = "";
         if(person.rarity == "UR"){
@@ -373,7 +391,7 @@ class View{
     static createPersonList(rankList, list){
         if(rankList == "urList"){
             for(let i = 0; i < list.length; i++){
-                if(!currentUser.drawnList.some(object => object.name === list[i].name)){
+                if(!currentUser.drawnList.some(index => personList[index].name === list[i].name)){
                     document.getElementById(rankList).innerHTML += `
                         <p id="${list[i].name}" class="m-0 ps-3 text-secondary">???</p>
                     `
@@ -387,7 +405,7 @@ class View{
         }
         else{
             for(let i = 0; i < list.length; i++){
-                if(!currentUser.drawnList.some(object => object.name === list[i].name)){
+                if(!currentUser.drawnList.some(index => personList[index].name === list[i].name)){
                     document.getElementById(rankList).innerHTML += `
                         <p id="${list[i].name}" class="m-0 ps-3 text-secondary">${list[i].name}</p>
                     `
